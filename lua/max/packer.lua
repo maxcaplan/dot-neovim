@@ -44,6 +44,13 @@ return require('packer').startup(function(use)
 
 	use('karb94/neoscroll.nvim')
 
+	use {
+		"m4xshen/smartcolumn.nvim",
+		config = function()
+			require("smartcolumn").setup()
+		end
+	}
+
 	-- Productivity Plugns
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.1',
