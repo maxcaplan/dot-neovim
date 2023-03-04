@@ -14,8 +14,14 @@ local packer_bootstrap = ensure_packer()
 
 -- Install plugins
 return require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
-  
+  use 'wbthomason/packer.nvim' 
+
+  use {
+	  'glepnir/dashboard-nvim',
+	  config = function() require('max/dashboard') end,
+	  event = 'VimEnter'
+  }
+
   use {
 	  'nvim-telescope/telescope.nvim', tag = '0.1.1',
 	  requires = { {'nvim-lua/plenary.nvim'} }
@@ -29,18 +35,15 @@ return require('packer').startup(function(use)
 	  end 
   }
 
-  use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+  use("kyazdani42/nvim-web-devicons")
   
+  use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
+
   use('mbbill/undotree')
 
   use('tpope/vim-fugitive')
 
-  use {
-	  'nvim-tree/nvim-tree.lua',
-	  requires = {
-		  'nvim-tree/nvim-web-devicons', -- optional, for file icons
-	  }
-  }
+  use('nvim-tree/nvim-tree.lua')
 
   use {
 	  'VonHeikemen/lsp-zero.nvim',
