@@ -50,6 +50,8 @@ return require('packer').startup(function(use)
 
   use('nvim-tree/nvim-tree.lua')
 
+  use('karb94/neoscroll.nvim')
+
   use {
 	  'VonHeikemen/lsp-zero.nvim',
 	  branch = 'v1.x',
