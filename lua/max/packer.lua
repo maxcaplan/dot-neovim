@@ -35,6 +35,8 @@ return require('packer').startup(function(use)
 	-- Interface Plugins
 	use("kyazdani42/nvim-web-devicons")
 
+	use { 'akinsho/bufferline.nvim', tag = "v3.*" }
+
 	use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
 
 	use {
