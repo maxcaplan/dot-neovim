@@ -1,3 +1,4 @@
+-- Auto install packer
 local ensure_packer = function()
   local fn = vim.fn
   local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
@@ -11,12 +12,12 @@ end
 
 local packer_bootstrap = ensure_packer()
 
+-- Install plugins
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   
   use {
 	  'nvim-telescope/telescope.nvim', tag = '0.1.1',
-	  -- or                            , branch = '0.1.x',
 	  requires = { {'nvim-lua/plenary.nvim'} }
   }
 
@@ -26,13 +27,20 @@ return require('packer').startup(function(use)
 	  config = function()
 		  vim.cmd('colorscheme catppuccin')
 	  end 
- 	 }
+  }
 
   use('nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'})
   
   use('mbbill/undotree')
 
   use('tpope/vim-fugitive')
+
+  use {
+	  'nvim-tree/nvim-tree.lua',
+	  requires = {
+		  'nvim-tree/nvim-web-devicons', -- optional, for file icons
+	  }
+  }
 
   use {
 	  'VonHeikemen/lsp-zero.nvim',
@@ -58,7 +66,6 @@ return require('packer').startup(function(use)
   }
 
   -- Automatically set up your configuration after cloning packer.nvim
-  -- Put this at the end after all plugins
   if packer_bootstrap then
     require('packer').sync()
   end
