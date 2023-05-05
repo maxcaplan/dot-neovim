@@ -12,3 +12,8 @@ require('bufferline').setup {
 	}
 }
 
+function close_current_buffer()
+	require('bufdelete').bufdelete(0)
+end
+
+vim.keymap.set("n", "<leader>q", function() close_current_buffer() end)

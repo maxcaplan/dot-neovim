@@ -53,10 +53,15 @@ return require('packer').startup(function(use)
 		end
 	}
 
-	-- Productivity Plugns
+	-- Productivity Plugins
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.1',
 		requires = { { 'nvim-lua/plenary.nvim' } }
+	}
+
+	use {
+		"folke/trouble.nvim",
+		requires = "nvim-tree/nvim-web-devicons"
 	}
 
 	use('mbbill/undotree')
@@ -65,14 +70,37 @@ return require('packer').startup(function(use)
 
 	use('nvim-tree/nvim-tree.lua')
 
+	use("windwp/nvim-autopairs")
+
+	use "terrortylor/nvim-comment"
+
+	use 'famiu/bufdelete.nvim'
+
+	use {
+		"kylechui/nvim-surround",
+		tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+		config = function()
+			require("nvim-surround").setup()
+		end
+	}
+
+	use {
+		"folke/which-key.nvim",
+		config = function()
+			vim.o.timeout = true
+			vim.o.timeoutlen = 300
+			require("which-key").setup()
+		end
+	}
+
 	-- LSP Plugins
 	use {
 		'VonHeikemen/lsp-zero.nvim',
 		branch = 'v1.x',
 		requires = {
 			-- LSP Support
-			{ 'neovim/nvim-lspconfig' }, -- Required
-			{ 'williamboman/mason.nvim' }, -- Optional
+			{ 'neovim/nvim-lspconfig' },    -- Required
+			{ 'williamboman/mason.nvim' },  -- Optional
 			{ 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
 			-- Autocompletion
@@ -83,8 +111,13 @@ return require('packer').startup(function(use)
 			{ 'saadparwaiz1/cmp_luasnip' }, -- Optional
 			{ 'hrsh7th/cmp-nvim-lua' }, -- Optional
 
+			-- Formating
+			{ 'nvim-lua/plenary.nvim' },
+			{ 'jose-elias-alvarez/null-ls.nvim' }, -- Required
+			{ 'MunifTanjim/prettier.nvim' }, -- Required
+
 			-- Snippets
-			{ 'L3MON4D3/LuaSnip' }, -- Required
+			{ 'L3MON4D3/LuaSnip' },    -- Required
 			{ 'rafamadriz/friendly-snippets' }, -- Optional
 		}
 	}
